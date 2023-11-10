@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppController } from 'src/app.controller';
+import { AppService } from 'src/app.service';
 import { TerminusModule } from '@nestjs/terminus';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { PrismaModule } from 'src/prisma/prisma.module';
+import { LogsModule } from 'src/logs/logs.module';
+import { LogsService } from 'src/logs/logs.service';
+import { ApiModule } from './api/api.module';
 
 @Module({
   imports: [
@@ -17,8 +21,11 @@ import { ThrottlerModule } from '@nestjs/throttler';
         limit: 10,
       },
     ]),
+    PrismaModule,
+    LogsModule,
+    ApiModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, LogsService],
 })
 export class AppModule {}
