@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from 'src/app.controller';
 import { AppService } from 'src/app.service';
 import { TerminusModule } from '@nestjs/terminus';
 import { HttpModule } from '@nestjs/axios';
@@ -25,7 +24,6 @@ import { ApiModule } from './api/api.module';
     LogsModule,
     ApiModule,
   ],
-  controllers: [AppController],
   providers: [AppService, LogsService],
 })
 export class AppModule {}
