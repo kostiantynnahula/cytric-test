@@ -47,6 +47,7 @@ export class ApiController {
     const outputFile = await this.uploadService.saveFileByUrl(url);
 
     const file = createReadStream(outputFile);
+
     return file.pipe(res);
   }
 
